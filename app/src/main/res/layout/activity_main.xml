@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/edittext_uri" />
+        android:text="@string/edittext_uri"/>
 
     <Button
         android:id="@+id/open_website_button"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/edittext_loc" />
+        android:text="@string/edittext_loc"/>
 
     <Button
         android:id="@+id/open_location_button"
@@ -44,9 +44,7 @@
         android:id="@+id/share_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="Input Text to Share"
-        android:text="Input text to share." />
+        android:text="@string/edittext_share"/>
 
     <Button
         android:id="@+id/share_text_button"

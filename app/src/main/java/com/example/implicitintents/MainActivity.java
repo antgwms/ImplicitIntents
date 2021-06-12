@@ -1,24 +1,29 @@
 package com.example.implicitintents;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ShareCompat;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText mWebsiteEditText;
     private EditText mLocationEditText;
+    private EditText mShareTextEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mWebsiteEditText = findViewById(R.id.website_edittext);
         mLocationEditText = findViewById(R.id.location_edittext);
+        mShareTextEditText = findViewById(R.id.share_edittext);
     }
 
     public void openWebsite(View view) {
@@ -31,12 +36,11 @@ public class MainActivity extends AppCompatActivity {
         //Find an Activity to pass the Intent and start that Activity
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
+        }
             else {
                 Log.d("ImplicitIntents", "Can't handle this!");
             }
         }
-
-    }
 
     public void openLocation(View view) {
         //Get the location as Text
@@ -50,6 +54,21 @@ public class MainActivity extends AppCompatActivity {
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
-        else (Log.d("ImplicirIntents", "Can't handle this intent!");
+        else { Log.d("ImplicitIntents", "Can't handle this intent!");
         }
     }
+
+    public void shareText(View view) {
+        //Create a variable to hold the text & get as string
+        String txt = mShareTextEditText.getText().toString();
+        //Define a mime type of the text, which constitutes type/subtype
+        String mimeType = "text/plain";
+        //Call the ShareCompatibility intent builder and call intent methods
+        ShareCompat.IntentBuilder
+                .from(this)
+                .setType(mimeType)
+                .setChooserTitle("Share this text with:")
+                .setText(txt)
+                .startChooser();
+    }
+}
