@@ -1,6 +1,7 @@
 package com.example.implicitintents;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.camera.core.ImageCapture;
 import androidx.core.app.ShareCompat;
 
 import android.content.Intent;
@@ -70,5 +71,16 @@ public class MainActivity extends AppCompatActivity {
                 .setChooserTitle("Share this text with:")
                 .setText(txt)
                 .startChooser();
+    }
+
+    public void takePicture(View view) {
+        //Use the Android takePicture use case to take a picture when the button is clicked
+        ImageCapture = imageCapture =
+                new ImageCapture.Builder()
+                    .setTargetRotation(view.getDisplay().getRotation())
+                    .build();
+
+        cameraProvider.bindToLifecycle(lifecycleOwner, cameraSelector, imageCapture, imageAnalysis, preview);
+
     }
 }
